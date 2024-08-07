@@ -28,12 +28,12 @@ public class UserController {
 //		return new ResponseEntity<String>(savedUser, null, HttpStatus.SC_CREATED);
 //	}
 
-	@PostMapping("/users")
+	@PostMapping("/saveUsers")
 	public String saveUser(@RequestBody User user) throws InterruptedException, ExecutionException {
 		return userService.saveUser(user);
 	}
 
-	@GetMapping("/users")
+	@GetMapping("/getUsers")
 	public List<User> getUsers() throws InterruptedException, ExecutionException {
 		List<User> users = userService.getUser();
 		return users;
