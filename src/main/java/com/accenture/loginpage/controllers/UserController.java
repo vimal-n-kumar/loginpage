@@ -1,10 +1,12 @@
 package com.accenture.loginpage.controllers;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,7 @@ import com.accenture.loginpage.services.UserService;
 @RestController
 @RequestMapping("/api")
 public class UserController {
-	
+
 	@Autowired
 	private UserService userService;
 
@@ -25,10 +27,17 @@ public class UserController {
 //		String savedUser = userService.saveUser(user);
 //		return new ResponseEntity<String>(savedUser, null, HttpStatus.SC_CREATED);
 //	}
-	
+
 	@PostMapping("/users")
-	public String saveUser(@RequestBody User user) throws InterruptedException, ExecutionException{
+	public String saveUser(@RequestBody User user) throws InterruptedException, ExecutionException {
 		return userService.saveUser(user);
 	}
-	
+
+	@GetMapping("/users")
+	public List<User> getUsers() throws InterruptedException, ExecutionException {
+		List<User> users = userService.getUser();
+		return users;
+
+	}
+
 }
